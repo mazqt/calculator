@@ -9,11 +9,71 @@
     "seven eight nine plus"
     "four five six minus"
     "one two three times"
-    "comma zero equals divived"
+    "comma zero equals divided"
     ;
 }
 
 #display {
     grid-area: display;
     text-align: right;
+}
+
+#plus {
+    grid-area: plus;
+}
+
+#minus {
+    grid-area: minus;
+}
+
+#times {
+    grid-area: times;
+}
+
+#divided {
+    grid-area: divided;
+}
+
+#comma {
+    grid-area: comma;
+}
+
+#nine {
+    grid-area: nine;
+}
+
+#eight {
+    grid-area: eight;
+}
+
+#seven {
+    grid-area: seven;
+}
+
+#six {
+    grid-area: six;
+}
+
+#five {
+    grid-area: five;
+}
+
+#four {
+    grid-area: four;
+}
+
+#three {
+    grid-area: three;
+}
+
+#two {
+    grid-area: two;
+}
+
+#one {
+    grid-area: one;
+}
+
+#zero {
+    grid-area: zero;
 }
