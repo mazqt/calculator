@@ -15,27 +15,33 @@
 
     <div id="calculator">
         <div id="display"> 
-            <h2>49</h2>
+            <h2 id="onDisplay"></h2>
         </div>
+        <button id="backspace" type="button">&larr;</button>
         <button id="plus" type="button">+</button>
         <button id="minus" type="button">-</button>
         <button id="divided" type="button">/</button>
         <button id="times" type="button">*</button>
         <button id="equals" type="button">=</button>
-        <button id="one" type="button">1</button>
-        <button id="two" type="button">2</button>
-        <button id="three" type="button">3</button>
-        <button id="four" type="button">4</button>
-        <button id="five" type="button">5</button>
-        <button id="six" type="button">6</button>
-        <button id="seven" type="button">7</button>
-        <button id="eight" type="button">8</button>
-        <button id="nine" type="button">9</button>
-        <button id="zero" type="button">0</button>
-        <button id="comma" type="button">.</button>
+        <button class="number" id="one" type="button" value="1">1</button>
+        <button class="number" id="two" type="button" value="2">2</button>
+        <button class="number" id="three" type="button" value="3">3</button>
+        <button class="number" id="four" type="button" value="4">4</button>
+        <button class="number" id="five" type="button" value="5">5</butto4>
+        <button class="number" id="six" type="button" value="6">6</button>
+        <button class="number" id="seven" type="button" value="7">7</button>
+        <button class="number" id="eight" type="button" value="8">8</button>
+        <button class="number" id="nine" type="button" value="9">9</button>
+        <button class="number" id="zero" type="button" value="0">0</button>
+        <button class="number" id="comma" type="button" value=".">.</button>
     </div>
     <script> 
 
+        const display = document.querySelector('#display');
+        const numbers = document.querySelectorAll('.number');
+        let onDisplay = document.querySelector('#onDisplay');
+        let currentNumbers = "0";
+        onDisplay.textContent = currentNumbers;
 
         function add(num1, num2) {
             return num1 + num2
@@ -59,6 +65,21 @@
             if (operator === "*") return multiply(num1, num2)
             if (operator === "/") return divide(num1, num2)
         }
+
+        numbers.forEach (button => {
+            button.addEventListener('click', event => {
+                if (currentNumbers === "0" && button.value !== ".") {
+                    currentNumbers = button.value;
+                    console.log(currentNumbers);
+                    onDisplay.textContent = currentNumbers;
+                } 
+                else if (!(currentNumbers.includes(".") && button.value === ".")) {
+                    currentNumbers += button.value;
+                    console.log(currentNumbers)
+                    onDisplay.textContent = currentNumbers;
+                }
+            })
+        })
     </script>
 </body>
 

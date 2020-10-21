@@ -5,7 +5,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 
-    "display display display display"
+    "display display display backspace"
     "seven eight nine plus"
     "four five six minus"
     "one two three times"
@@ -16,6 +16,10 @@
 #display {
     grid-area: display;
     text-align: right;
+}
+
+#backspace {
+    grid-area: backspace;
 }
 
 #plus {
