@@ -1,0 +1,19 @@
+#calculator {
+    height: 40vw;
+    width: 25vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "display display display display"
+    "seven eight nine plus"
+    "four five six minus"
+    "one two three times"
+    "comma zero equals divived"
+    ;
+}
+
+#display {
+    grid-area: display;
+    text-align: right;
+}
