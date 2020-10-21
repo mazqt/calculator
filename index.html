@@ -18,10 +18,10 @@
             <h2 id="onDisplay"></h2>
         </div>
         <button id="backspace" type="button">&larr;</button>
-        <button id="plus" type="button">+</button>
-        <button id="minus" type="button">-</button>
-        <button id="divided" type="button">/</button>
-        <button id="times" type="button">*</button>
+        <button id="plus" type="button" value="+" class="function">+</button>
+        <button id="minus" type="button" value="-" class="function">-</button>
+        <button id="divided" type="button" value="/" class="function">/</button>
+        <button id="times" type="button" value="*" class="function">*</button>
         <button id="equals" type="button">=</button>
         <button class="number" id="one" type="button" value="1">1</button>
         <button class="number" id="two" type="button" value="2">2</button>
@@ -39,8 +39,14 @@
 
         const display = document.querySelector('#display');
         const numbers = document.querySelectorAll('.number');
+        const functions = document.querySelectorAll('.function')
         let onDisplay = document.querySelector('#onDisplay');
         let currentNumbers = "0";
+        let currentFunction = "";
+        let leftHand = 0;
+        let rightHand = 0;
+
+
         onDisplay.textContent = currentNumbers;
 
         function add(num1, num2) {
@@ -70,15 +76,24 @@
             button.addEventListener('click', event => {
                 if (currentNumbers === "0" && button.value !== ".") {
                     currentNumbers = button.value;
-                    console.log(currentNumbers);
                     onDisplay.textContent = currentNumbers;
                 } 
                 else if (!(currentNumbers.includes(".") && button.value === ".")) {
                     currentNumbers += button.value;
-                    console.log(currentNumbers)
                     onDisplay.textContent = currentNumbers;
                 }
             })
+        })
+
+        functions.forEach (button => {
+            button.addEventListener ('click', event => {
+                if (currentFunction === "" && currentNumbers !== "0") {
+                    currentFunction = button.value;
+                    leftHand = parseFloat(currentNumbers);
+                    currentNumbers = "0";
+                    onDisplay.textContent = currentNumbers;
+                }
+            } )
         })
     </script>
 </body>
