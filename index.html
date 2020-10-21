@@ -40,6 +40,7 @@
         const display = document.querySelector('#display');
         const numbers = document.querySelectorAll('.number');
         const functions = document.querySelectorAll('.function')
+        const backspace = document.querySelector('#backspace');
         let onDisplay = document.querySelector('#onDisplay');
         let currentNumbers = "0";
         let currentFunction = "";
@@ -94,6 +95,16 @@
                     onDisplay.textContent = currentNumbers;
                 }
             } )
+        })
+
+        backspace.addEventListener ('click', event => {
+            if (currentNumbers.length > 1) {
+                currentNumbers = currentNumbers.slice(0, currentNumbers.length - 1);
+                onDisplay.textContent = currentNumbers;
+            } else {
+                currentNumbers = "0";
+                onDisplay.textContent = currentNumbers;
+            }
         })
     </script>
 </body>
