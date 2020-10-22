@@ -56,7 +56,7 @@
         let leftHand = 0;
         let rightHand = 0;
 
-        const keyNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        const keyNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
         const keyFunctions = ["+", "-", "*", "/"];
 
         onDisplay.textContent = currentNumbers;
@@ -118,10 +118,9 @@
                 leftHand = parseFloat(currentNumbers);
                 currentNumbers = "0";
                 onDisplay.textContent = currentNumbers;
-            } else if (currentNumbers !== '0') {
-                onDisplay.textContent = calculate();
+            } else  {
+                calculate();
                 currentFunction = func; 
-                currentNumbers = "0"
             }    
         }
 
@@ -166,17 +165,17 @@
                 pressClear();
             } else if (value === "Backspace") {
                 pressBackspace();
-            } else if (value === "Enter") {
+            } else if (value === "=") {
                 calculate();
             }
-            
         })    
 
 
         function calculate() {
-             if (currentFunction !== "" && leftHand !== 0) {
+             if (currentFunction !== "") {
                 rightHand = parseFloat(currentNumbers);
                 let result = operate(currentFunction, leftHand, rightHand);
+                console.log(result);
                 currentFunction = "";
                 rightHand = 0;
                 leftHand = result;
@@ -187,11 +186,8 @@
                         result = result.toExponential(4);
                     }
                 }
-                //console.log(`current num ${typeof currentNumbers + " " + currentNumbers} current func ${currentFunction} left hand ${typeof leftHand + " " + leftHand} right hand ${typeof rightHand + " " + rightHand}`)
-                currentNumbers = result.toString(); 
-                onDisplay.textContent = currentNumbers;
-                //console.log(`current num ${currentNumbers} displau ${onDisplay.textContent}`)
-                return currentNumbers
+                currentNumbers = "0"; 
+                onDisplay.textContent = result.toString();
             }
         }
 
