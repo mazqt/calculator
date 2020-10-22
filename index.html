@@ -118,7 +118,12 @@
                 rightHand = 0;
                 leftHand = result;
                 if (result.toString().length > 12) {
-                    result = result.toFixed(3);
+                    result = result.toFixed(2);
+                    if (result.toString().length > 12) {
+                        result = parseInt(result);
+                        result = result.toExponential(4);
+                        console.log(result);
+                    }
                 }
                 currentNumbers = result.toString();
                 onDisplay.textContent = currentNumbers;
