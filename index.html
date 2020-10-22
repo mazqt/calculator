@@ -104,7 +104,7 @@
                     onDisplay.textContent = currentNumbers;
                     console.log(leftHand);
                     console.log(currentFunction);
-                } else {
+                } else if (currentNumbers !== "0") {
                     onDisplay.textContent = calculate();
                     currentFunction = button.value;
                     currentNumbers = "0"
@@ -118,6 +118,11 @@
             leftHand = 0;
             rightHand = 0;
             onDisplay.textContent = currentNumbers;
+
+            console.log(leftHand);
+            console.log(rightHand);
+            console.log(currentFunction);
+            console.log(`${currentNumbers} ${typeof currentNumbers}`);
         })
 
         backspace.addEventListener ('click', event => {
