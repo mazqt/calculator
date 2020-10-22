@@ -96,6 +96,10 @@
                     onDisplay.textContent = currentNumbers;
                     console.log(leftHand);
                     console.log(currentFunction);
+                } else {
+                    onDisplay.textContent = calculate();
+                    currentFunction = button.value;
+                    currentNumbers = "0"
                 }
             } )
         })
@@ -111,7 +115,12 @@
         })
 
         equals.addEventListener ('click', event => {
-            if (currentFunction !== "" && leftHand !== 0) {
+            calculate();
+            onDisplay.textContent = currentNumbers;
+        })
+
+        function calculate() {
+             if (currentFunction !== "" && leftHand !== 0) {
                 rightHand = parseFloat(currentNumbers);
                 result = operate(currentFunction, leftHand, rightHand);
                 currentFunction = "";
@@ -126,9 +135,9 @@
                     }
                 }
                 currentNumbers = result.toString();
-                onDisplay.textContent = currentNumbers;
+                return currentNumbers
             }
-        })
+        }
 
     </script>
 </body>
