@@ -117,6 +117,9 @@
                 currentFunction = "";
                 rightHand = 0;
                 leftHand = result;
+                if (result.toString().length > 12) {
+                    result = result.toFixed(3);
+                }
                 currentNumbers = result.toString();
                 onDisplay.textContent = currentNumbers;
             }

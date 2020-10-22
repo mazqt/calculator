@@ -2,8 +2,8 @@
     height: 40vw;
     width: 25vw;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 4vw 4vw 4vw 4vw;
+    grid-template-rows: 5vw 5vw 5vw 5vw 5vw;
     grid-template-areas: 
     "display display display backspace"
     "seven eight nine plus"
@@ -11,6 +11,12 @@
     "one two three times"
     "comma zero equals divided"
     ;
+}
+
+h2 {
+    max-width: 13vw;
+    overflow: hidden;
+    font-size: 2vw;
 }
 
 #display {
