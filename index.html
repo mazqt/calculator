@@ -56,6 +56,8 @@
         let leftHand = 0;
         let rightHand = 0;
 
+        const keyNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        const keyFunctions = ["+", "-", "*", "/"];
 
         onDisplay.textContent = currentNumbers;
 
@@ -84,48 +86,62 @@
 
         numbers.forEach (button => {
             button.addEventListener('click', event => {
-                if (currentNumbers === "0" && button.value !== ".") {
-                    currentNumbers = button.value;
-                    onDisplay.textContent = currentNumbers;
-                } 
-                else if (!(currentNumbers.includes(".") && button.value === ".")) {
-                    currentNumbers += button.value;
-                    onDisplay.textContent = currentNumbers;
-                }
+                pressNumber(button.value);
             })
         })
 
+        function pressNumber(num) {
+            if (currentNumbers === "0" && num !== "." || onDisplay.textContent !== currentNumbers) {
+                currentNumbers = num;
+                onDisplay.textContent = currentNumbers;
+            }
+            else if (!(currentNumbers.includes(".") && num === ".")) {
+                currentNumbers += num;
+                onDisplay.textContent = currentNumbers;
+            }
+        }
+
+        console.log(currentNumbers);
+        console.log(currentFunction);
+        console.log(leftHand);
+        console.log(rightHand);
+
         functions.forEach (button => {
             button.addEventListener ('click', event => {
-                if (currentFunction === "" && currentNumbers !== "0") {
-                    currentFunction = button.value;
-                    leftHand = parseFloat(currentNumbers);
-                    currentNumbers = "0";
-                    onDisplay.textContent = currentNumbers;
-                    console.log(leftHand);
-                    console.log(currentFunction);
-                } else if (currentNumbers !== "0") {
-                    onDisplay.textContent = calculate();
-                    currentFunction = button.value;
-                    currentNumbers = "0"
-                }
+                pressFunction(button.value);
             } )
         })
 
+        function pressFunction(func) {
+            if (currentFunction === "" && currentNumbers !== "0") {
+                currentFunction = func;
+                leftHand = parseFloat(currentNumbers);
+                currentNumbers = "0";
+                onDisplay.textContent = currentNumbers;
+            } else if (currentNumbers !== '0') {
+                onDisplay.textContent = calculate();
+                currentFunction = func; 
+                currentNumbers = "0"
+            }    
+        }
+
         clear.addEventListener ('click', event => {
+            pressClear();
+        })
+
+        function pressClear() {
             currentNumbers = "0";
             currentFunction = "";
             leftHand = 0;
             rightHand = 0;
             onDisplay.textContent = currentNumbers;
-
-            console.log(leftHand);
-            console.log(rightHand);
-            console.log(currentFunction);
-            console.log(`${currentNumbers} ${typeof currentNumbers}`);
-        })
+        }
 
         backspace.addEventListener ('click', event => {
+            pressBackspace();
+        })
+
+        function pressBackspace() {
             if (currentNumbers.length > 1) {
                 currentNumbers = currentNumbers.slice(0, currentNumbers.length - 1);
                 onDisplay.textContent = currentNumbers;
@@ -133,16 +149,34 @@
                 currentNumbers = "0";
                 onDisplay.textContent = currentNumbers;
             }
-        })
+        }
 
         equals.addEventListener ('click', event => {
             calculate();
         })
 
+        document.addEventListener('keydown', event => {                
+            value = event.key;
+    
+            if (keyNumbers.includes(value)) {
+                pressNumber(value);
+            } else if (keyFunctions.includes(value)) {
+                pressFunction(value);
+            } else if (value === "c") {
+                pressClear();
+            } else if (value === "Backspace") {
+                pressBackspace();
+            } else if (value === "Enter") {
+                calculate();
+            }
+            
+        })    
+
+
         function calculate() {
              if (currentFunction !== "" && leftHand !== 0) {
                 rightHand = parseFloat(currentNumbers);
-                result = operate(currentFunction, leftHand, rightHand);
+                let result = operate(currentFunction, leftHand, rightHand);
                 currentFunction = "";
                 rightHand = 0;
                 leftHand = result;
@@ -151,11 +185,12 @@
                     if (result.toString().length > 12) {
                         result = parseInt(result);
                         result = result.toExponential(4);
-                        console.log(result);
                     }
                 }
-                currentNumbers = result.toString();
+                //console.log(`current num ${typeof currentNumbers + " " + currentNumbers} current func ${currentFunction} left hand ${typeof leftHand + " " + leftHand} right hand ${typeof rightHand + " " + rightHand}`)
+                currentNumbers = result.toString(); 
                 onDisplay.textContent = currentNumbers;
+                //console.log(`current num ${currentNumbers} displau ${onDisplay.textContent}`)
                 return currentNumbers
             }
         }
