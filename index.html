@@ -39,8 +39,9 @@
 
         const display = document.querySelector('#display');
         const numbers = document.querySelectorAll('.number');
-        const functions = document.querySelectorAll('.function')
+        const functions = document.querySelectorAll('.function');
         const backspace = document.querySelector('#backspace');
+        const equals = document.querySelector('#equals');
         let onDisplay = document.querySelector('#onDisplay');
         let currentNumbers = "0";
         let currentFunction = "";
@@ -93,6 +94,8 @@
                     leftHand = parseFloat(currentNumbers);
                     currentNumbers = "0";
                     onDisplay.textContent = currentNumbers;
+                    console.log(leftHand);
+                    console.log(currentFunction);
                 }
             } )
         })
@@ -106,6 +109,19 @@
                 onDisplay.textContent = currentNumbers;
             }
         })
+
+        equals.addEventListener ('click', event => {
+            if (currentFunction !== "" && leftHand !== 0) {
+                rightHand = parseFloat(currentNumbers);
+                result = operate(currentFunction, leftHand, rightHand);
+                currentFunction = "";
+                rightHand = 0;
+                leftHand = result;
+                currentNumbers = result.toString();
+                onDisplay.textContent = currentNumbers;
+            }
+        })
+
     </script>
 </body>
 
