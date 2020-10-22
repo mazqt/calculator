@@ -3,13 +3,14 @@
     width: 25vw;
     display: grid;
     grid-template-columns: 4vw 4vw 4vw 4vw;
-    grid-template-rows: 5vw 5vw 5vw 5vw 5vw;
+    grid-template-rows: 5vw 5vw 5vw 5vw 5vw 5vw;
     grid-template-areas: 
     "display display display backspace"
     "seven eight nine plus"
     "four five six minus"
     "one two three times"
-    "comma zero equals divided"
+    "comma zero clear divided"
+    "equals equals equals equals"
     ;
 }
 
@@ -22,6 +23,10 @@ h2 {
 #display {
     grid-area: display;
     text-align: right;
+}
+
+#equals {
+    grid-area: equals;
 }
 
 #backspace {

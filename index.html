@@ -23,6 +23,7 @@
         <button id="divided" type="button" value="/" class="function">/</button>
         <button id="times" type="button" value="*" class="function">*</button>
         <button id="equals" type="button">=</button>
+        <button id="clear" type="button">C</button>
         <button class="number" id="one" type="button" value="1">1</button>
         <button class="number" id="two" type="button" value="2">2</button>
         <button class="number" id="three" type="button" value="3">3</button>
@@ -42,6 +43,7 @@
         const functions = document.querySelectorAll('.function');
         const backspace = document.querySelector('#backspace');
         const equals = document.querySelector('#equals');
+        const clear = document.querySelector('#clear')
         let onDisplay = document.querySelector('#onDisplay');
         let currentNumbers = "0";
         let currentFunction = "";
@@ -104,6 +106,14 @@
             } )
         })
 
+        clear.addEventListener ('click', event => {
+            currentNumbers = "0";
+            currentFunction = "";
+            leftHand = 0;
+            rightHand = 0;
+            onDisplay.textContent = currentNumbers;
+        })
+
         backspace.addEventListener ('click', event => {
             if (currentNumbers.length > 1) {
                 currentNumbers = currentNumbers.slice(0, currentNumbers.length - 1);
@@ -116,7 +126,6 @@
 
         equals.addEventListener ('click', event => {
             calculate();
-            onDisplay.textContent = currentNumbers;
         })
 
         function calculate() {
@@ -135,6 +144,7 @@
                     }
                 }
                 currentNumbers = result.toString();
+                onDisplay.textContent = currentNumbers;
                 return currentNumbers
             }
         }
