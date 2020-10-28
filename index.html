@@ -172,6 +172,11 @@
 
 
         function calculate() {
+            if (currentFunction === "/" && parseFloat(currentNumbers) === 0) {
+                onDisplay.textContent = "Error"
+                return
+            }
+
              if (currentFunction !== "") {
                 rightHand = parseFloat(currentNumbers);
                 let result = operate(currentFunction, leftHand, rightHand);
