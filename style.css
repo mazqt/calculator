@@ -34,6 +34,15 @@ html {
     box-shadow: 0.2vw 0.2vw 0.3vw;
 }
 
+
+
+#github {
+    font-size: 1.6vw;
+    position: fixed;
+    right: 10vw;
+    top: 15vw;
+}
+
 #header {
     position: relative;
     bottom: 2vw;
@@ -50,7 +59,7 @@ html {
 
 #subtitle {
     font-size: 1.6vw;
-    margin: 0.5vw 0.5vw;
+    margin: 0.2 vw 0.2vw;
 }
 
 button {
