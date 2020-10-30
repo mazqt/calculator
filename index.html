@@ -184,15 +184,31 @@
                 currentFunction = "";
                 rightHand = 0;
                 leftHand = result;
-                if (result.toString().length > 12) {
-                    result = result.toFixed(2);
-                    if (result.toString().length > 12) {
-                        result = parseInt(result);
-                        result = result.toExponential(4);
+                string = result.toString();
+                     if (string.length > 12 && result > 1) {
+                       console.log(result + "result before");
+                       console.log(string.slice(0, 1));
+                       result = parseFloat(result);
+                       result = result.toExponential(4);
+                       result = result.toString();
+                       console.log(result + "result after");
+                    } else if (string.length > 12 && result > 0) {
+                       console.log(string.slice(string.length - 3, string.length + 1));
+                       result = getNegExponential(string);
+                       console.log(result);    
                     }
-                }
                 currentNumbers = "0"; 
-                onDisplay.textContent = result.toString();
+                onDisplay.textContent = result;
+            }
+        }
+
+        function getNegExponential(string) {
+            let index = string.indexOf("e");
+            if (string.length > 10) {
+                let newString = string.slice(0, 6) + string.slice(index, string.length);
+                return newString
+            } else {
+                return string
             }
         }
 
