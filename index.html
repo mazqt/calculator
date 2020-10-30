@@ -185,14 +185,14 @@
                 rightHand = 0;
                 leftHand = result;
                 string = result.toString();
-                     if (string.length > 12 && result > 1) {
+                     if (string.length > 12 && Math.abs(result) > 1) {
                        console.log(result + "result before");
                        console.log(string.slice(0, 1));
                        result = parseFloat(result);
                        result = result.toExponential(4);
                        result = result.toString();
                        console.log(result + "result after");
-                    } else if (string.length > 12 && result > 0) {
+                    } else if (string.length > 12 && Math.abs(result) > 0) {
                        console.log(string.slice(string.length - 3, string.length + 1));
                        result = getNegExponential(string);
                        console.log(result);    
